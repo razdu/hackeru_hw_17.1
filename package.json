@@ -1,0 +1,30 @@
+{
+  "name": "hackeru_hw_17.1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "dev": "npx nodemon node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razdu/hackeru_hw_17.1.git"
+  },
+  "dependencies": {
+    "fs-extra": "10.0.0",
+    "express": "4.17.2",
+    "mongodb": "4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.15"
+  },
+  "keywords": [],
+  "author": "razdu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/razdu/hackeru_hw_17.1/issues"
+  },
+  "homepage": "https://github.com/razdu/hackeru_hw_17.1#readme"
+}

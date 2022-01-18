@@ -2,10 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const fs = require("fs-extra");
-const port = 8286;
 const { MongoClient } = require("mongodb");
 const { setDbData } = require("./mongodb");
 
+const host = process.env.HOST;
+const port = process.env.PORT;
 const dbPort = process.env.DB_PORT;
 const dbHost = process.env.DB_HOST;
 const username = process.env.DB_USER;
@@ -70,5 +71,5 @@ function writeJsonFile(fileName, data) {
 }
 
 app.listen(port, () => {
-  console.log(`Server open at http://127.0.0.1:${port}`);
+  console.log(`Server open at http://${host}:${port}`);
 });

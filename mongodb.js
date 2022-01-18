@@ -1,5 +1,5 @@
 /**
- *
+ * insertOne / insertMany
  * @param { object } client MongoDB client object
  * @param { string } dbName Database Name
  * @param { string } collectionName Collection Name
@@ -9,8 +9,8 @@
 async function setDbData(client, dbName, collectionName, method, query) {
   try {
     await client.connect();
-    const database = client.db(dbName);
-    const documents = database.collection(collectionName);
+    const db = client.db(dbName);
+    const documents = db.collection(collectionName);
 
     let flag = await documents[method](query);
   } finally {

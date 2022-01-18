@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const fs = require("fs-extra");
-const serveStatic = require("serve-static");
 const port = 8286;
 const { MongoClient } = require("mongodb");
 const { setDbData } = require("./mongodb");
@@ -12,7 +11,7 @@ const dbHost = process.env.DB_HOST;
 const username = process.env.DB_USER;
 const password = process.env.DB_PASS;
 
-app.use(serveStatic("./public"));
+app.use(express.serveStatic("./public"));
 app.use(express.urlencoded({ extended: true }));
 
 const uri = `mongodb://${dbHost}:${dbPort}/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`;

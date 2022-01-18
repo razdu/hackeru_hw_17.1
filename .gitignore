@@ -110,4 +110,4 @@ dist
 .vscode
 
 # Files folder
-files
+.files

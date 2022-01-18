@@ -11,18 +11,21 @@
     <div class="container">
       <h1>Add Reminder</h1>
       <label>Message</label><input type="text" data-role="msg" /><br />
-      <button data-role="save">Contact Us</button>
+      <button data-role="save">Reminde Me!</button>
     </div>
     <script>
       $(() => {
         $('[data-role="save"]').click(() => {
           let msg = $('[data-role="msg"]').val();
-          $.post("/reminders", { msg }, (data) => {
-            if (data.success) {
-              //clear inputs
-              $('[type="text"]').val("");
-            }
-          });
+          if (msg !== "") {
+            $.post("/reminders", { msg }, (data) => {
+              if (data.success) {
+                $('[type="text"]').val("");
+              }
+            });
+          } else {
+            console.log("Can't be empty!!");
+          }
         });
       });
     </script>

@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const fs = require("fs-extra");
-const serveStatic = require("serve-static");
 const port = 8286;
 const { MongoClient } = require("mongodb");
 const { setDbData } = require("./mongodb");
@@ -12,8 +11,30 @@ const dbHost = process.env.DB_HOST;
 const username = process.env.DB_USER;
 const password = process.env.DB_PASS;
 
-app.use(serveStatic("./public"));
+function getNowTimeStamp() {
+  let now = new Date();
+  let year = now.getFullYear();
+  let month = now.getMonth();
+  let day = now.getDate();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+  toString = () =>
+    `[ ${day}-${month}-${year} > ${hours}:${minutes}:${seconds} ]`;
+  return { year, month, day, hours, minutes, seconds, toString };
+}
+
+app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  let timetampString = getNowTimeStamp().toString();
+  let method = req.method;
+  let url = req.url;
+  let status = res.statusCode;
+  let query = `${timetampString}: ${method} ${url} -- ${status}`;
+  writeJsonFile("/requests", query);
+  next();
+});
 
 const uri = `mongodb://${dbHost}:${dbPort}/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`;
 const client = new MongoClient(uri);

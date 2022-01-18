@@ -27,15 +27,6 @@ function getNowTimeStamp() {
 
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  let timetampString = getNowTimeStamp().toString();
-  let method = req.method;
-  let url = req.url;
-  let status = res.statusCode;
-  let query = `${timetampString}: ${method} ${url} -- ${status}`;
-  writeJsonFile("/requests", query);
-  next();
-});
 
 const uri = `mongodb://${dbHost}:${dbPort}/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`;
 const client = new MongoClient(uri);
@@ -72,4 +63,13 @@ function writeJsonFile(fileName, data) {
 
 app.listen(port, () => {
   console.log(`Server open at http://${host}:${port}`);
+});
+app.use((req, res, next) => {
+  let timetampString = getNowTimeStamp().toString();
+  let method = req.method;
+  let url = req.url;
+  let status = res.statusCode;
+  let query = `${timetampString}: ${method} ${url} -- ${status}`;
+  writeJsonFile("/requests", query);
+  next();
 });

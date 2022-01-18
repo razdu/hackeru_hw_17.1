@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const fs = require("fs-extra");
+const serveStatic = require("serve-static");
 const port = 8286;
 const { MongoClient } = require("mongodb");
 const { setDbData } = require("./mongodb");
@@ -11,13 +12,13 @@ const dbHost = process.env.DB_HOST;
 const username = process.env.DB_USER;
 const password = process.env.DB_PASS;
 
-app.use(express.serveStatic("./public"));
+app.use(serveStatic("./public"));
 app.use(express.urlencoded({ extended: true }));
 
 const uri = `mongodb://${dbHost}:${dbPort}/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`;
 const client = new MongoClient(uri);
 
-app.post("/contacts", (req, res) => {
+app.post("/contacts-us", (req, res) => {
   const query = req.body;
   setDbData(client, "contacts", "userData", "insertOne", query);
   writeJsonFile(req.url, query);
@@ -26,9 +27,11 @@ app.post("/contacts", (req, res) => {
 });
 
 app.post("/reminders", (req, res) => {
-  const data = req.body;
-  res.json(req.body);
-  writeJsonFile(req.url, data);
+  const query = req.body;
+  setDbData(client, "reminders", "reminders", "insertOne", query);
+  writeJsonFile(req.url, query);
+  query.success = true;
+  res.json(query);
 });
 
 function writeJsonFile(fileName, data) {

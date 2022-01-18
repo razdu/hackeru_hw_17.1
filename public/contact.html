@@ -10,16 +10,18 @@
   <body>
     <div class="container">
       <h1>Add Contacts</h1>
-      <label>First Name:</label><input type="text" data-role="fname" /><br />
-      <label>Last Name:</label><input type="text" data-role="lname" /><br />
-      <button data-role="save">Save</button>
+      <label>Name:</label><input type="text" data-role="name" /><br />
+      <label>Email:</label><input type="text" data-role="email" /><br />
+      <label>Message</label><input type="text" data-role="msg" /><br />
+      <button data-role="save">Contact Us</button>
     </div>
     <script>
       $(() => {
         $('[data-role="save"]').click(() => {
-          let fname = $('[data-role="fname"]').val();
-          let lname = $('[data-role="lname"]').val();
-          $.post("/contacts", { fname, lname }, (data) => {
+          let name = $('[data-role="name"]').val();
+          let email = $('[data-role="email"]').val();
+          let msg = $('[data-role="msg"]').val();
+          $.post("/contacts-us", { name, email, msg }, (data) => {
             if (data.success) {
               //clear inputs
               $('[type="text"]').val("");

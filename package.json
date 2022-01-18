@@ -13,10 +13,11 @@
     "url": "git+https://github.com/razdu/hackeru_hw_17.1.git"
   },
   "dependencies": {
-    "fs-extra": "10.0.0",
+    "dotenv": "^14.2.0",
     "express": "4.17.2",
-    "mongodb": "4.3.0",
-    "momment": "0.0.1"
+    "fs-extra": "10.0.0",
+    "momment": "0.0.1",
+    "mongodb": "4.3.0"
   },
   "devDependencies": {
     "nodemon": "2.0.15"

@@ -6,16 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HU-HW-17.01.22</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      .container {
+        display: flex;
+        box-sizing: border-box;
+        padding: auto;
+        height: 97vh;
+      }
+      .block {
+        position: relative;
+        top: 20%;
+        border: 1px solid black;
+        border-radius: 15px;
+        font-size: 5rem;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        width: 750px;
+        height: 625px;
+        text-align: center;
+        margin: 0 auto;
+        padding: auto 0;
+      }
+      a {
+        text-decoration: none;
+      }
+      a,
+      a:visited,
+      a:hover {
+        color: royalblue;
+      }
+      .contact-block a {
+        color: seashell;
+      }
+      .contact-block {
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          7deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(35, 128, 240, 0.9752275910364145) 78%,
+          rgba(0, 212, 255, 1) 100%
+        );
+      }
+      .reminder-block a {
+        color: darkblue;
+      }
+      .reminder-block {
+        background: rgb(208, 98, 146);
+        background: radial-gradient(
+          circle,
+          rgba(208, 98, 146, 1) 24%,
+          rgba(148, 187, 233, 1) 88%
+        );
+      }
+    </style>
   </head>
   <body>
     <div class="container">
       <div class="contact-block block">
-        <a href="contact.html" target="_blank" rel="noopener noreferrer"
+        <a href="contact.html" rel="noopener noreferrer"
           ><h2>Contacts App</h2></a
         >
       </div>
-      <div class="reminders-block block">
-        <a href="reminders.html" target="_blank" rel="noopener noreferrer"
+      <div class="reminder-block block">
+        <a href="reminders.html" rel="noopener noreferrer"
           ><h2>Reminders App</h2></a
         >
       </div>
